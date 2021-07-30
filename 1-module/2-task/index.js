@@ -9,8 +9,14 @@ function print(text) {
  * Эту функцию нужно поменять так,
  * чтобы функция sayHello работала корректно
  */
-function isValid(name) {
-  // ваш код...
+function isValid(userName) {
+  if ((userName == null) || 
+      (userName.includes(' ')) ||
+      (userName.length < 4)) {
+  return false;
+  } else {
+  return true;
+  }
 }
 
 function sayHello() {
