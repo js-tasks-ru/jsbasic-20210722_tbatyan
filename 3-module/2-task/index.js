@@ -1,3 +1,4 @@
 function filterRange(arr, a, b) {
-  // ваш код...
+  let result = arr.filter(num => (a <= num && num <= b));
+      return result;
 }
