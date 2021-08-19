@@ -7,3 +7,4 @@ function makeFriendsList(friends) {
 
   return ul;
 }
+
