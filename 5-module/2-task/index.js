@@ -1,7 +1,7 @@
 function toggleText() {
   let button = document.querySelector(".toggle-text-button");
 
-document.addEventListener('click', function() {
+button.addEventListener('click', function() {
          
          if (!button) return; // Checking if clicked the button
 

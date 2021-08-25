@@ -11,7 +11,7 @@ function initCarousel() {
 
     let position = 0;
 
-  arrow_Right.addEventListener('click', () => {
+  arrow_Right.addEventListener('click', () => { 
       
     arrow_Left.style.display = '';
 
