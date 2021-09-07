@@ -9,7 +9,7 @@ export default class RibbonMenu {
     this.onClick_Ribbon_Tabs();
   }
 
-  render () {
+  render() {
     this.elem = createElement (`
   <div class="ribbon">
     <button class="ribbon__arrow ribbon__arrow_left ribbon__arrow_visible">
@@ -29,11 +29,11 @@ export default class RibbonMenu {
         let id = this.categories[i].id;
   
         categories_Links += `<a href="#" class="ribbon__item" data-id="${id}"> ${name} </a> \n`;
-      }; 
+      }
 
       let ribbon__inner = this.elem.querySelector(".ribbon__inner");
       ribbon__inner.innerHTML = categories_Links;
-  };
+  }
 
   onClick_Arrows() {
 
@@ -71,26 +71,34 @@ export default class RibbonMenu {
                     arrow_Left.classList.remove("ribbon__arrow_visible");
               }
           });
-  };
+  }
 
-  onClick_Ribbon_Tabs () {
+  onClick_Ribbon_Tabs() {
 
-        let ribbon_Inner = this.elem.querySelector(".ribbon__inner");
-    
+    let ribbon_Inner = this.elem.querySelector(".ribbon__inner");
+
     ribbon_Inner.addEventListener('click', (event) => {
 
-      event.preventDefault();
-      ribbon_Inner.classList.remove("ribbon__item_active");
+      if (!event.target.closest('.ribbon__item')) {
+        return;
+      }
 
-        let currentCategory = event.currentTarget;
-      
+      event.preventDefault();
+      let active = this.elem.querySelector('.ribbon__item_active');
+
+      if (active) {
+        active.classList.remove('ribbon__item_active');
+      }
+
+      let currentCategory = event.target;
+
       currentCategory.classList.add("ribbon__item_active");
-          
-              this.elem.dispatchEvent(new CustomEvent('product-add', {
-                  detail: currentCategory.id,
-                  bubbles: true
-              }));
+
+      this.elem.dispatchEvent(new CustomEvent('ribbon-select', {
+          detail: currentCategory.dataset.id,
+          bubbles: true
+      }));
     });
   };
 
-};
+}
