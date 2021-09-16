@@ -20,10 +20,11 @@ export default class UserTable {
   constructor(rows) {
       this.rows = rows;
 
-      this.render ();
+      this.render();
+      this.onClick();
   }
 
-render () {
+render() {
 
   this.elem = document.createElement('table');
   
@@ -46,8 +47,8 @@ let newRows = "";
 for (let i= 0; i< this.rows.length; i++) {
    let name = this.rows[i].name;
    let age = this.rows[i].age;
-   let salary = this.rows.salary[i].salary;
-   let city = this.rows.city[i].city;
+   let salary = this.rows[i].salary;
+   let city = this.rows[i].city;
   
   newRows += `
       <tr>
@@ -61,7 +62,18 @@ for (let i= 0; i< this.rows.length; i++) {
   
     let tbody = this.elem.querySelector('tbody');
     tbody.innerHTML = newRows;
-
   }
+
+onClick() {
+
+    let buttons = this.elem.querySelectorAll('button');
+      
+    for (let row_eraser of buttons) {
+
+      row_eraser.addEventListener('click', (event) => {
+        event.target.closest('tr').remove();
+      });
+    }
+ }
 
 }
